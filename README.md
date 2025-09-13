@@ -11,26 +11,26 @@ Currently, two official plugins are available:
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
-🎯 Interview Tracker
+# 🎯 Interview Tracker
 
 A modern, intuitive web application to help job seekers track interviews, manage applications, and stay organized during their job search journey.
 
-🚀 Features
+# 🚀 Features
 
-📅 Easy Interview Management: Schedule, track, and organize your interviews with reminders and status updates.
+- 📅 Easy Interview Management: Schedule, track, and organize your interviews with reminders and status updates.
 
-🎨 Customizable Dashboard: Personalize your dashboard to match your workflow and style.
+- 🎨 Customizable Dashboard: Personalize your dashboard to match your workflow and style.
 
-📊 Progress Tracking: Visual charts and reports to monitor application success rate and interview performance.
+- 📊 Progress Tracking: Visual charts and reports to monitor application success rate and interview performance.
 
-🔒 Secure Login System with Google Sign-In support.
+- 🔒 Secure Login System with Google Sign-In support.
 
-⚡ Tech Stack
+# ⚡ Tech Stack
 
-React.js (Frontend)
+- React.js (Frontend)
 
-Material UI (UI Components)
+- Material UI (UI Components)
 
-CSS Variables (Theming)
+- CSS Variables (Theming)
 
-No backend included (can be extended with Node.js or Firebase)
+- No backend included (can be extended with Node.js or Firebase)

@@ -2,6 +2,8 @@ import './homePage.css'
 import ComputerIcon from '@mui/icons-material/Computer';
 import PaletteIcon from '@mui/icons-material/Palette';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 
 function HomePage() {
@@ -36,12 +38,30 @@ function HomePage() {
 
             <div className="login-card">
                 <h2>Login to Get Started</h2>
-                <input type="email" placeholder="Email*" />
-                <input type="password" placeholder="Password*" />
-                <button>Login</button>
-                <button className="google-login">
+                <TextField
+                    required
+                    fullWidth
+                    id="outlined-required"
+                    label="Email"
+                    defaultValue=""
+                     margin="normal"
+                     
+                />
+                <TextField
+                    required
+                    fullWidth
+                    id="outlined-required"
+                    label="Password"
+                    defaultValue=""
+                    margin="normal"
+                />
+                <Button variant="outlined" size="small">
+          Login
+        </Button>
+
+                <Button variant="outlined" size="small" className="google-login">
                     <img src="https://img.icons8.com/color/16/google-logo.png" alt="Google" /> Sign in with Google
-                </button>
+                </Button>
                 <p>
                     Don't have an account? <a href="#">Create one now</a>
                 </p>
