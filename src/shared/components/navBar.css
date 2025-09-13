@@ -1,0 +1,27 @@
+.nav-container {
+    background-color: var(--primaryColor);
+    padding: 0px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    /* flex-direction: row; */
+    gap: 10px;
+    color: var(--textColor);
+}
+
+.color-selector-container {
+    display: flex;
+    gap: 5px;
+}
+
+.color-selector {
+    border: 2px solid #fff;
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+}
