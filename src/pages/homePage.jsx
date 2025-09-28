@@ -4,9 +4,11 @@ import PaletteIcon from '@mui/icons-material/Palette';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useState } from 'react';
 
 
 function HomePage() {
+    const [createNewAc, setCreateNewAc] = useState(false);
     return (
         <div className="welcome-container">
             <div className="welcome-text">
@@ -38,14 +40,24 @@ function HomePage() {
 
             <div className="login-card">
                 <h2>Login to Get Started</h2>
+                {createNewAc ?
+                    (<TextField
+                        required
+                        fullWidth
+                        id="outlined-required"
+                        label="Full name"
+                        defaultValue=""
+                        margin="normal"
+
+                    />) : ''}
                 <TextField
                     required
                     fullWidth
                     id="outlined-required"
                     label="Email"
                     defaultValue=""
-                     margin="normal"
-                     
+                    margin="normal"
+
                 />
                 <TextField
                     required
@@ -56,15 +68,18 @@ function HomePage() {
                     margin="normal"
                 />
                 <Button variant="outlined" size="small">
-          Login
-        </Button>
+                    Login
+                </Button>
 
                 <Button variant="outlined" size="small" className="google-login">
                     <img src="https://img.icons8.com/color/16/google-logo.png" alt="Google" /> Sign in with Google
                 </Button>
-                <p>
-                    Don't have an account? <a href="#">Create one now</a>
-                </p>
+                {createNewAc ? (<p>
+                    Already have an account? <a onClick={() => setCreateNewAc(false)}>Click here</a>
+                </p>) : (<p>
+                    Don't have an account? <a onClick={() => setCreateNewAc(true)}>Create one now</a>
+                </p>)}
+
             </div>
         </div>
     )
