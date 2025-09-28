@@ -10,3 +10,7 @@ body {
   color: var(--textColor);
   font-family: Arial, sans-serif;
 }
+
+.cursor-pointer{
+  cursor: pointer;
+}

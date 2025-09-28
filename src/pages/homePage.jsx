@@ -75,9 +75,9 @@ function HomePage() {
                     <img src="https://img.icons8.com/color/16/google-logo.png" alt="Google" /> Sign in with Google
                 </Button>
                 {createNewAc ? (<p>
-                    Already have an account? <a onClick={() => setCreateNewAc(false)}>Click here</a>
+                    Already have an account? <a className='cursor-pointer' onClick={() => setCreateNewAc(false)}>Click here</a>
                 </p>) : (<p>
-                    Don't have an account? <a onClick={() => setCreateNewAc(true)}>Create one now</a>
+                    Don't have an account? <a className='cursor-pointer' onClick={() => setCreateNewAc(true)}>Create one now</a>
                 </p>)}
 
             </div>
