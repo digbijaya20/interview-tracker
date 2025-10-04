@@ -1,14 +1,58 @@
-import './homePage.css'
+import './landingPage.css'
 import ComputerIcon from '@mui/icons-material/Computer';
 import PaletteIcon from '@mui/icons-material/Palette';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../shared/context/authContext';
+import api from '../shared/utils/config';
 
 
-function HomePage() {
+
+function LandingPage() {
     const [createNewAc, setCreateNewAc] = useState(false);
+    const [email, setEmail] = useState('');
+    const [fullname, setFullname] = useState('');
+    const [password, setPassword] = useState('');
+    const { login, user, isLoggedIn } = useContext(AuthContext);
+    const [isValidate, setValidate] = useState(false)
+    const navigate = useNavigate();
+
+
+    const handleAuth = async () => {
+        try {
+            let res;
+            if (createNewAc) {
+                res = await api.post('/signup', {
+                    email,
+                    password,
+                    full_name: fullName,
+                });
+            } else {
+                res = await api.post('/users/login', { email, password })
+            }
+            login(res.data.access_token);
+            if(res.data.access_token)
+                navigate("/dashboard");
+        } catch (err) {
+            console.error(err);
+            alert(err.response?.data?.detail || "Auth failed");
+        }
+    }
+
+    useEffect(()=>{
+        setValidate(false)
+        if(createNewAc && email !== '' && password !=='' && fullname !== ''){
+            setValidate(true)
+        }
+        if(!createNewAc && email !== '' && password !==''){
+            setValidate(true)
+        }
+
+    }, [email, password, createNewAc, fullname])
+
     return (
         <div className="welcome-container">
             <div className="welcome-text">
@@ -37,8 +81,7 @@ function HomePage() {
                     </div>
                 </div>
             </div>
-
-            <div className="login-card">
+            {!user ? (<div className="login-card">
                 <h2>Login to Get Started</h2>
                 {createNewAc ?
                     (<TextField
@@ -48,6 +91,8 @@ function HomePage() {
                         label="Full name"
                         defaultValue=""
                         margin="normal"
+                        value={fullname}
+                        onChange={(e)=> setFullname(e.target.value)}
 
                     />) : ''}
                 <TextField
@@ -57,6 +102,8 @@ function HomePage() {
                     label="Email"
                     defaultValue=""
                     margin="normal"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
 
                 />
                 <TextField
@@ -66,11 +113,15 @@ function HomePage() {
                     label="Password"
                     defaultValue=""
                     margin="normal"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button variant="outlined" size="small">
-                    Login
-                </Button>
-
+                {/* <Link to="/dashboard"> */}
+                    <Button variant="outlined" size="small" onClick={handleAuth} disabled={!isValidate}>
+                        {createNewAc ? 'Sign up' : 'Login'}  {isValidate}
+                    </Button>
+                    {isValidate}
+                {/* </Link> */}
                 <Button variant="outlined" size="small" className="google-login">
                     <img src="https://img.icons8.com/color/16/google-logo.png" alt="Google" /> Sign in with Google
                 </Button>
@@ -80,9 +131,10 @@ function HomePage() {
                     Don't have an account? <a className='cursor-pointer' onClick={() => setCreateNewAc(true)}>Create one now</a>
                 </p>)}
 
-            </div>
+            </div>) : ''}
+
         </div>
     )
 }
 
-export default HomePage;
+export default LandingPage;
